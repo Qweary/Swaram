@@ -1,0 +1,14 @@
+{
+  "description": "Run clippy and tests before allowing commits. Blocks commit on failure.",
+  "hooks": [
+    {
+      "type": "pre_tool_use",
+      "matcher": {
+        "tool_name": "bash",
+        "command_pattern": "git commit"
+      },
+      "command": "cargo clippy -- -W clippy::all 2>&1 && cargo test 2>&1",
+      "blocking": true
+    }
+  ]
+}
