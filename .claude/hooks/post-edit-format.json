@@ -1,0 +1,13 @@
+{
+  "description": "Auto-format Rust files after editing",
+  "hooks": [
+    {
+      "type": "post_tool_use",
+      "matcher": {
+        "tool_name": "str_replace_editor|create_file",
+        "file_pattern": "**/*.rs"
+      },
+      "command": "cargo fmt --quiet 2>/dev/null || true"
+    }
+  ]
+}
