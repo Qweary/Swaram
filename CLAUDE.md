@@ -3,9 +3,7 @@
 ## WHY: Project Purpose
 
 AudioHax is a Rust creative technology project that converts images into expressive,
-musically coherent output. The owner is a trained musician (music performance degree,
-trombone, professional experience) and security professional learning Rust through this
-project. Music quality is the primary objective — generated output should sound composed,
+musically coherent output. The owner is a trained musician and security professional. Music quality is the primary objective — generated output should sound composed,
 not algorithmic. Use proper music theory terminology; do not oversimplify.
 
 Three capability tracks share this repo:
