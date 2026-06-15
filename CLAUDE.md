@@ -100,6 +100,17 @@ For detailed information, read these docs/ files:
 - docs/conventions.md — full Rust style, git workflow, testing policy (see also project knowledge: development-conventions.md)
 - docs/agent-teams.md — spawn prompts, file ownership, coordination patterns (see also project knowledge: agent-teams-reference.md)
 
+## Session Handoff Convention
+
+WHY: This engagement runs across many sessions. State must survive the gap between them without
+forcing anyone to reconstruct it from the git log. `SWARM-STATE.md` at the repo root is the
+engagement HEAD — the single current-state document.
+
+WHAT/HOW:
+- Every working session closes by writing the next session's kickoff prompt into the `## Next Session` section of `SWARM-STATE.md`, and by updating `## State` and `## Decisions` to current.
+- A fresh session resumes by running `/audiohax-resume` (or by reading `SWARM-STATE.md` directly) before doing anything else.
+- Keep `SWARM-STATE.md` current-state-only — a living snapshot, not a narrative log. Settled decisions go under `## Decisions` so future sessions do not relitigate them.
+
 ## Agent Team Quick Reference
 
 3-5 agents max per swarm. Natural ownership splits: image agent (image_source.rs, image_analysis.rs), music agent (chord_engine.rs, mapping_loader.rs, mappings.json), output agent (midi_output.rs, main.rs playback), modem agent (modem.rs, bin/*), quality gate (reads all, writes tests/reports only). Spawn prompts must be fully self-contained — teammates do not inherit lead context. Always run the quality gate last: `cargo fmt && cargo clippy -- -W clippy::all && cargo test`.
